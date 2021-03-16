@@ -1,17 +1,17 @@
 import './App.css';
 import React from 'react';
 
-import AppComponent from './components/MyComponents';
+import PersonCard from './components/PersonCard';
 
 function App() {
   return (
 
     <div className="App">
-      <AppComponent lastName={"Doe"} firstName={"Jane"} age={45} hair={"Black"} />
-      <AppComponent lastName={"Smith"} firstName={"John"} age={88} hair={"Brown"} />
-      <AppComponent lastName={"Fillmore"} firstName={"Millard"} age={50} hair={"Brown"} />
-      <AppComponent lastName={"Smith"} firstName={"Maria"} age={62} hair={"Brown"} />
-      <AppComponent lastName={"Lynn"} firstName={"Jessica"} age={107} hair={"Red"} />
+      <PersonCard lastName={"Doe"} firstName={"Jane"} age={45} hair={"Black"} />
+      <PersonCard lastName={"Smith"} firstName={"John"} age={88} hair={"Brown"} />
+      <PersonCard lastName={"Fillmore"} firstName={"Millard"} age={50} hair={"Brown"} />
+      <PersonCard lastName={"Smith"} firstName={"Maria"} age={62} hair={"Brown"} />
+      <PersonCard lastName={"Lynn"} firstName={"Jessica"} age={107} hair={"Red"} />
     </div>
 
   );
