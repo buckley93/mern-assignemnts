@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { navigate } from '@reach/router';
 const ProductForm = () => {
-    const [ Title, setTitle] = useState("");
-    const [ Price, setPrice] = useState(0);
-    const [ Description, setDescription] = useState("");
+    const [ title, setTitle] = useState("");
+    const [ price, setPrice] = useState(0);
+    const [ description, setDescription] = useState("");
 
     const onSubmitHandler = e => {
-        e.preventDefault();
         axios.post('http://localhost:8000/api/createProduct', {
-            Title,
-            Price,
-            Description
+            title,
+            price,
+            description
         })
-            .then(res=>console.log(res))
+            .then(res=>{
+                console.log(res);
+                navigate('/products');
+            })
             .catch(err=>console.log(err))
     }
     return(
