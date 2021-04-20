@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import axios from 'axios';
-import { Link, navigate } from '@reach/router';
+import { Link } from '@reach/router';
+import DeleteButton from '../components/DeleteButton'
 
 const ProductList = (props) => {
-    const { removeFromDom } = props;
-    const deleteProduct = (productId) => {
-        axios.delete('http://localhost:8000/api/products/' + productId)
-            .then(res=>{
-                removeFromDom(productId);
-            })
+    // const { removeFromDom } = props;
+    // const deleteProduct = (productId) => {
+    //     axios.delete('http://localhost:8000/api/products/' + productId)
+    //         .then(res=>{
+    //             removeFromDom(productId);
+    //         })
+    // }
+    // refactored code
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/products')
+            .then(res => setProducts(res.data));
+    }, []);
+    const removeFromDom = productId => {
+        console.log("we are in the remove from dom")
+        setProducts(products.filter(product => product._id !== productId));
     }
     return (
         <div>
@@ -22,9 +33,7 @@ const ProductList = (props) => {
                              Edit
                         </Link>
                         |
-                        <button onClick={(e) => {deleteProduct(product._id)}}>
-                            Delete
-                        </button>
+                        <DeleteButton productId={product._id} successCallBack = {() => removeFromDom(product._id)}/>
                     </div>
                 )
             })}
